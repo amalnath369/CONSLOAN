@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/emi.css' %}">
+    <title>CONSLOAN</title>
+    <style>
+       a{
+        text-decoration-line: none;
+        
+       }
+       html{
+        font-size: 20px;
+       }
+      
+    </style>
+
+</head>
+<body>
+<nav class="navbar navbar-light bg-black h-25">
+     <a href="loan.html"> <p class="fs-2 ms-3 text-warning"> CONSLOAN</p>     </a>
+    <a href="{% url 'logout' %}" id="sign"><div class="fs-3 bg-warning  text-white   me-5 " >Log Out</div></a>
+  </nav>
+  <div class="bg-image" style="background-image: url( '{% static 'images/new.jpg' %}'); height: 100vh; background-repeat: no-repeat; background-size: cover; ">
+        <div style="background-color: rgba(0, 0, 0, 0.8); height: 100vh;"> 
+            <div class="h-75 d-inline-block d-flex flex-column justify-content-center align-items-center text-center " >
+                <form class="bg-black" method="GET" action="{% url 'mock_cibil_score' %}">
+                    <div class="m-3">
+                        <label for="name" class="form-label text-warning">Full Name:</label>
+                    <input type="text" id="name" name="name" class="form-control" required><br><br>
+                    </div>
+                   <div class="m-3"><label for="pan_number" class="form-label text-warning">PAN Number:</label>
+                    <input type="text"  name="pan_number" class="form-control" required><br><br>
+                </div>
+                    
+                   <div class="m-3"> <label for="dob" class="form-label text-warning">Date of Birth:</label>
+                    <input type="date"  name="dob" class="form-control" required><br><br></div>
+                
+                    <button type="submit" class="btn btn-warning m-1" >Check CIBIL Score</button>
+                </form>
+            </div>
+        </div>
+
+           
+    
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+

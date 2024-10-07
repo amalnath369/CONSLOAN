@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EMI Payment</title>
+</head>
+<body>
+    <!-- paymentindex.html -->
+<form id="payment-form" method="POST" action="{% url 'paid' %}">
+    {% csrf_token %}
+    <div id="dropin-container"></div>
+    <input  name="amount" value="{{ amount }}">
+    <input  name="emi_id" value="{{ emi_id }}">
+    <input  name="payment_id" value="{{ payment_id }}">
+    <button type="submit">Pay Now</button>
+</form>
+
+<script src="https://js.braintreegateway.com/web/dropin/1.32.1/js/dropin.min.js"></script>
+<script>
+    var form = document.querySelector('#payment-form');
+    braintree.dropin.create({
+        authorization: '{{ order }}',
+        container: '#dropin-container'
+    }, function (err, dropinInstance) {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            dropinInstance.requestPaymentMethod(function (err, payload) {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+                // Append the payment method nonce to the form and submit
+                var nonceInput = document.createElement('input');
+                nonceInput.setAttribute('type', 'hidden');
+                nonceInput.setAttribute('name', 'payment_method_nonce');
+                nonceInput.setAttribute('value', payload.nonce);
+                form.appendChild(nonceInput);
+                form.submit();
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

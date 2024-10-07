@@ -1,0 +1,232 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/emi.css' %}">
+    <title>CONSLOAN</title>
+    <style>
+       a{
+        text-decoration-line: none;
+        
+       }
+       html{
+        font-size: 20px;
+       }
+      
+    </style>
+
+</head>
+<body>
+<nav class="navbar navbar-light bg-black h-25">
+     <a href="loan.html"> <p class="fs-2 ms-3 text-warning"> CONSLOAN</p>     </a>
+    <a href="{% url 'signin' %}" id="sign"><div class="fs-3 bg-warning  text-white   me-5 " >Sign in</div></a>
+  </nav>
+  <div class="bg-image" style="background-image: url( '{% static 'images/new.jpg' %}'); height: 100vh; background-repeat: no-repeat; background-size: cover; ">
+        <div style="background-color: rgba(0, 0, 0, 0.8); height: 100vh;">
+            <div class="text-center text-white">
+                <h1 style="color: whitesmoke;" class="px-5 text-center align-middle  pt-5">Welcome to <span style="color: yellow;">CONSLOAN</span>—your trusted partner for easy, secure, and personalized loan solutions!</h1>
+                <p class="fs-3  mx-5 pt-5  " id="ad">Want to take a loan? Enter your details to create an account</p>      
+                <div class="d-flex justify-content-center gap-3">
+                    <input type="email" class="form-control w-50" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your Email here...">
+                    <a href="{% url 'reg' %}"><button type="submit" class="btn btn-warning text-white">Get Started</button></a>
+                </div>
+            </div>        
+        </div>
+   </div>
+   <div class="bg-black h-25" >
+    <div class="d-flex justify-content-center gap-5">
+        <img src="" alt="">
+    <p class="fs-3  text-warning text-center mt-3">Know your Credit Score now! <br> Check for detailed report & insights!</p>
+    <a href="{% url 'cibil' %}"><button type="submit" class="btn btn-warning btn-sm  m-5">Get Report</button></a>
+    </div>
+
+   </div>
+   <div class="bg-dark text-dark h-10vh">k</div>
+   <div class="bg-black h-100vh">
+    <div>
+        <p class="fs-1 text-center text-warning text-decoration-underline pt-3">What we Offer!</p>    
+    </div>
+    <div class="d-flex flex-wrap  p-3 grid gap-5" style="margin-top: 3rem; margin-left: 5rem; gap: 3rem; ">
+        <div><p  class="fs-3 text-white text-center"> Personal Loan for Self-Employed</p>
+            <p class="badge text-bg-warning text-wrap">Personal loans for business owners to fulfill credit needs of
+                 ₹10,000 to ₹2 Lakhs <br> with repayment tenures ranging between 4 to 24 months</p>
+          </div>
+        <div>
+            <p  class="fs-3 text-center text-white"> Personal Loan for Salaried</p>
+            <p class="badge text-bg-warning text-wrap">Quick personal loans for salaried individuals with <br> repayment terms between 3 to 36 months for a loan amount of ₹10,000 to ₹5 Lakhs.
+            </p>
+
+        </div>
+        <div>
+            <p  class="fs-3 text-white text-center"> Flexi Personal Loan
+            </p>
+            <p class="badge text-bg-warning text-wrap">Instant personal loans for urgent credit between ₹1,000 to ₹80,000  with flexible <br> tenures between 3 to 10 months.
+            </p>
+
+        </div>
+        <div> <p  class="fs-3 text-white text-center"> Business Loan</p>
+            <p class="badge text-bg-warning text-wrap">Access funds for various purposes, such as expansion, operations, or investment, <br>  with competitive interest rates.</p>
+         </div>
+    </div>
+   </div>
+   <div class="bg-dark text-dark h-10vh">k</div>
+   <div class="bg-black" style="height: 600px;">
+          <p class="fs-2 ms-5 text-warning">EMI Calculator</p>
+          <div class="bg-black h-100vh">
+            <div class="emi-calculator bg-warning " >
+                <div class="input-group">
+                    <label for="loan-amount">Loan Amount:</label>
+                    <input type="number" id="loan-amount-input" placeholder="Loan Amount" class="bg-black text-white">
+                </div>
+                <div class="input-group">
+                    <label for="interest-rate">Interest Rate:</label>
+                    <input type="number" id="interest-rate-input" placeholder="Interest Rate" class="bg-black text-white">
+                </div>
+                <div class="input-group">
+                    <label for="loan-term">Loan Term (in months):</label>
+                    <input type="number" id="loan-term-input" placeholder="Loan Term" class="bg-black text-white">
+                </div>
+                <div class="input-group">
+                    <button id="calculate-btn" onclick="calculate()">Calculate EMI</button>
+                    <button id="reset-btn" onclick="reset()">Reset</button>
+                </div>
+                <div id="emi-result">
+                    Monthly EMI
+                    <input type="text" id="screen1" class="bg-black text-white">
+                </div>
+                
+            </div>
+        </div>    
+   </div>
+   <div class="bg-dark text-dark h-10vh">k</div>
+
+   <div class=" bg-black">
+
+    <footer class="text-white text-center text-lg-start bg-black">
+      <!-- Grid container -->
+      <div class="container p-4">
+        <!--Grid row-->
+        <div class="row mt-4">
+          <!--Grid column-->
+          <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+            <h5 class="text-uppercase mb-4">About company</h5>
+  
+            <p>
+              At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+              voluptatum deleniti atque corrupti.
+            </p>
+  
+            <p>
+              Blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas
+              molestias.
+            </p>
+  
+            <div class="mt-4">
+              <!-- Facebook -->
+              <a type="button" class="btn btn-floating btn-warning btn-lg "><i class="fab fa-facebook-f text-white"></i></a>
+              <!-- Dribbble -->
+              <a type="button" class="btn btn-floating btn-warning btn-lg"><i class="fab fa-dribbble"></i></a>
+              <!-- Twitter -->
+              <a type="button" class="btn btn-floating btn-warning btn-lg"><i class="fab fa-twitter"></i></a>
+              <!-- Google + -->
+              <a type="button" class="btn btn-floating btn-warning btn-lg"><i class="fab fa-google-plus-g"></i></a>
+              <!-- Linkedin -->
+            </div>
+          </div>
+          <!--Grid column-->
+  
+          <!--Grid column-->
+          <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase mb-4 pb-1">Search something</h5>
+  
+            <div class="form-outline form-white mb-4">
+              <input type="text" id="formControlLg" class="form-control form-control-lg">
+              <label class="form-label" for="formControlLg" style="margin-left: 0px;">Search</label>
+            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 48.8px;"></div><div class="form-notch-trailing"></div></div></div>
+  
+            <ul class="fa-ul" style="margin-left: 1.65em;">
+              <li class="mb-3">
+                <span class="fa-li"><i class="fas fa-home"></i></span><span class="ms-2">New York, NY 10012, US</span>
+              </li>
+              <li class="mb-3">
+                <span class="fa-li"><i class="fas fa-envelope"></i></span><span class="ms-2">info@example.com</span>
+              </li>
+              <li class="mb-3">
+                <span class="fa-li"><i class="fas fa-phone"></i></span><span class="ms-2">+ 01 234 567 88</span>
+              </li>
+              <li class="mb-3">
+                <span class="fa-li"><i class="fas fa-print"></i></span><span class="ms-2">+ 01 234 567 89</span>
+              </li>
+            </ul>
+          </div>
+          <!--Grid column-->
+  
+          <!--Grid column-->
+          <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase mb-4">Opening hours</h5>
+  
+            <table class="table text-center text-white">
+              <tbody class="font-weight-normal">
+                <tr>
+                  <td>Mon - Thu:</td>
+                  <td>8am - 9pm</td>
+                </tr>
+                <tr>
+                  <td>Fri - Sat:</td>
+                  <td>8am - 1am</td>
+                </tr>
+                <tr>
+                  <td>Sunday:</td>
+                  <td>9am - 10pm</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+      </div>
+      <!-- Grid container -->
+  
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2024 Copyright:
+        Lorem ipsum dolor sit.
+      </div>
+      <!-- Copyright -->
+    </footer>
+    
+  </div>
+    
+    <script>
+     function calculate(){
+        var P=document.getElementById('loan-amount-input').value
+        var I=document.getElementById('interest-rate-input').value
+        var T=document.getElementById('loan-term-input').value
+        var EMI=document.getElementById('screen1')
+        if (P!='' && I!='' && T!='' && P!=0 && I!=0 && T!=0){
+          r=I/(12*100)
+          b=(1+r)**T
+          c=(P*r*b)/(b-1)
+          EMI.value=c
+        }
+     }
+     function reset(){
+        document.getElementById('loan-amount-input').value=''
+        document.getElementById('interest-rate-input').value=''
+        document.getElementById('loan-term-input').value=''
+        document.getElementById('screen1').value=''
+        
+     }
+    </script>
+    
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
